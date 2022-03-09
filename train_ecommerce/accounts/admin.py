@@ -8,7 +8,13 @@ from .forms import UserCreationForm, UserChangeForm
 
 @admin.register(OtpCode)
 class OtpCodeAdmin(admin.ModelAdmin):
-    list_display = ('phone_number', 'code', 'created')
+    list_display = ('phone_number', 'code', 'created', 'active')
+    list_display_links = ('phone_number', 'code', 'created',)
+
+    def active(self, obj):
+        return obj.is_active
+
+    active.boolean = True
 
 
 class UserAdmin(BaseUserADmin):
