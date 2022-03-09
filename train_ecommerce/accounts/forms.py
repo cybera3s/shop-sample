@@ -1,5 +1,3 @@
-from cProfile import label
-
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
@@ -41,7 +39,7 @@ class UserChangeForm(forms.ModelForm):
 
 class UserRegistrationForm(forms.Form):
     email = forms.EmailField()
-    full_name = forms.CharField(label='fuul name')
+    full_name = forms.CharField(label='full name')
     phone = forms.CharField(max_length=11)
     password = forms.CharField(widget=forms.PasswordInput)
 
