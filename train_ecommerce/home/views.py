@@ -17,8 +17,8 @@ class HomeView(View):
 class ProductDetailView(View):
     def get(self, request, slug):
         product = get_object_or_404(Product, slug=slug)
-        categories = Category.objects.all()
-        return render(request, 'home/detail.html', {'product': product, 'categories': categories})
+        form = CartAddForm()
+        return render(request, 'home/detail.html', {'product': product, 'form': form})
 
     def post(self, request):
         ...
