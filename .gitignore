@@ -1,6 +1,6 @@
 .idea
 __pycache__
 venv
-train_ecommerce/.idea
+train_ecommerce/.idea/*
 train_ecommerce/migrations
 train_ecommerce/db.sqlite3
