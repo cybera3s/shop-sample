@@ -83,12 +83,16 @@ class UserLoginView(View):
         if form.is_valid():
             cd = form.cleaned_data
             user = authenticate(request, phone_number=cd['phone'], password=cd['password'])
-            login(request, user)
-            request.session['user_login_info'] = {
-                'phone_number': cd['phone'],
-                'password': cd['password'],
-            }
-            return redirect('home:home')
+            if user is not None:
+                login(request, user)
+                request.session['user_login_info'] = {
+                    'phone_number': cd['phone'],
+                    'password': cd['password'],
+                }
+                return redirect('home:home')
+
+            messages.error(request, 'username or password is wrong', 'error')
+
         return render(request, self.template_name, {'form': form})
 
 
