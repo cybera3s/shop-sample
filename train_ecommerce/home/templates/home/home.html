@@ -6,9 +6,14 @@
 {% endblock %}
 
 {% block content %}
+
+    {% for category in categories %}
+        <a href="{{ category.get_absolute_url }}" class="btn btn-primary">{{ category.name }}</a>
+    {% endfor %}
+    <br><br><br><br>
     {% for product in products %}
 
-        <div class="card rounded" style="width: 18rem;">
+        <div class="card rounded" style="width: 18rem;display:inline-block;">
           <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
             <div class="card-body">
                 <h5 class="card-title"><a class="text-decoration-none text-dark" href="{{ product.get_absolute_url }}">{{ product.name }}</a></h5>
