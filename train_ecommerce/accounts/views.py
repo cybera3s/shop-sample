@@ -55,15 +55,14 @@ class UserRegisterVerifyCodeView(View):
             cd = form.cleaned_data
 
             if cd['code'] == code_instance.code:
-                now = datetime.now()
-                if (code_instance.created + timedelta(minutes=1)) < now:
+                if code_instance.is_active:
                     user = User.objects.create_user(user_session['phone_number'], user_session['email'],
                                                     user_session['full_name'], user_session['password'])
                     code_instance.delete()
-                    messages.success(request, 'registered', 'success')
+                    messages.success(request, 'registered successfully', 'success')
                 else:
-                    messages.error(request, 'time is up!', 'danger')
-                    return redirect(self.template_name)
+                    messages.error(request, 'code is expired!', 'danger')
+                    return redirect('accounts:register')
             else:
                 messages.error(request, 'wrong code!', 'danger')
                 return redirect(self.template_name)
