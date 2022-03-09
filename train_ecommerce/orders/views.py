@@ -8,7 +8,8 @@ from orders.forms import CartAddForm
 
 class CartView(View):
     def get(self, request):
-        return render(request, 'orders/cart.html')
+        cart = Cart(request)
+        return render(request, 'orders/cart.html', {'cart': cart})
 
     def post(self):
         ...
