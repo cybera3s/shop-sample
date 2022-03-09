@@ -1,4 +1,7 @@
 import random
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from utils import send_otp_code
 from django.shortcuts import render, redirect
 
@@ -96,7 +99,8 @@ class UserLoginView(View):
         return render(request, self.template_name, {'form': form})
 
 
-class UserLogoutView(View):
+class UserLogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
+        messages.success(request, 'logged out')
         return redirect('home:home')
