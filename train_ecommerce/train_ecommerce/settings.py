@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# ARVAN CLOUD
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_ACCESS_KEY_ID = '2e7457e7-2852-4f21-ae23-1e486b60797a'
+AWS_SECRET_ACCESS_KEY = 'ee465aef6243186e2b9aef47af75a8622367817ed5e6345400b0b8fb5d97deba'
+AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.com'
+AWS_STORAGE_BUCKET_NAME = 'arioshop'
+AWS_SERVICE_NAME = 's3'
+AWS_S3_FILE_OVERWRITE = False
