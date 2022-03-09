@@ -1,20 +1,16 @@
 import random
-
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from utils import IsAdminUserMixin
 from utils import send_otp_code
 from django.shortcuts import render, redirect
-
-# Create your views here.
 from django.views import View
 from .forms import *
 from .models import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from datetime import timedelta, datetime
 
 
-class UserRegisterView(View):
+class UserRegisterView(View):  # IsAdminUserMixin
     form_class = UserRegistrationForm
     template_name = 'accounts/register.html'
 
