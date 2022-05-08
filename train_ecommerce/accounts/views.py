@@ -84,10 +84,6 @@ class UserLoginView(View):
             user = authenticate(request, phone_number=cd['phone'], password=cd['password'])
             if user is not None:
                 login(request, user)
-                request.session['user_login_info'] = {
-                    'phone_number': cd['phone'],
-                    'password': cd['password'],
-                }
                 return redirect('home:home')
 
             messages.error(request, 'username or password is wrong', 'error')
