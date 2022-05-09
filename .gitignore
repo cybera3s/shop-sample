@@ -3,3 +3,5 @@ train_ecommerce/venv
 train_ecommerce/.idea
 train_ecommerce/migrations
 train_ecommerce/db.sqlite3
+/.idea/*
+
