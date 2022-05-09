@@ -24,7 +24,11 @@
               <a class="nav-link active" aria-current="page" href="{% url 'accounts:user_login' %}">Login</a>
             </li>
         {% endif %}
-
+        {% if request.user.is_admin %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home:bucket' %}">Bucket</a>
+            </li>
+        {% endif %} 
 
       </ul>
     {% if request.user.is_authenticated %}
