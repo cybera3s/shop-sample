@@ -1,4 +1,5 @@
 from bucket import bucket
+from celery import shared_task
 
 
 # TODO: can be async
