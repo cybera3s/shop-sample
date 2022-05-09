@@ -7,5 +7,6 @@ def all_bucket_objects_task():
     return result
 
 
-# def delete_bucket_object_task(obj_name):
-#     bucket.del_object(obj_name)
+@shared_task
+def delete_object_task(key):
+    bucket.delete_object(key)
