@@ -30,8 +30,7 @@ class BucketHome(View):
     template_name = 'home/bucket.html'
 
     def get(self, request):
-        objects = all_bucket_objects_task()
-
+        objects = tasks.all_bucket_objects_task()
         return render(request, self.template_name, {'objects': objects})
 
 
