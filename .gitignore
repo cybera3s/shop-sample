@@ -1,5 +1,4 @@
-.idea/
-__pycache__
+train_ecommerce/__pycache__
 train_ecommerce/venv
 train_ecommerce/.idea
 train_ecommerce/migrations
