@@ -27,8 +27,9 @@ class Bucket:
         else:
             return None
 
-    # def del_object(self, obj_name):
-    #     self.conn.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=obj_name)
+    def delete_object(self, key):
+        self.conn.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=key)
+        return True
 
 
 bucket = Bucket()
