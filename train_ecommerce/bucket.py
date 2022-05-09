@@ -1,5 +1,9 @@
+import os
+
 import boto3
 from django.conf import settings
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'train_ecommerce.settings')
 
 
 class Bucket:
@@ -30,6 +34,17 @@ class Bucket:
     def delete_object(self, key):
         self.conn.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME, Key=key)
         return True
+
+    def upload_file(self, filename, name_in_bucket, bucket_name=settings.AWS_STORAGE_BUCKET_NAME):
+        try:
+            self.conn.upload_file(filename, bucket_name, name_in_bucket)
+            return True
+        except Exception as e:
+            print('Upload Failed...', e)
+
+    def download_object(self, key):
+        with open(settings.AWS_LOCAL_STORAGE + key, 'wb') as f:
+            self.conn.download_fileobj(settings.AWS_STORAGE_BUCKET_NAME, key, f)
 
 
 bucket = Bucket()
