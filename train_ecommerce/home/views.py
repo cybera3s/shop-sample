@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-
-from orders.forms import CartAddForm
+from orders.forms import *
 from .models import *
 from django.views import View
+from .tasks import all_bucket_objects_task
 
 
 class HomeView(View):
@@ -23,3 +23,18 @@ class ProductDetailView(View):
 
     def post(self, request):
         ...
+
+
+class BucketHome(View):
+    template_name = 'home/bucket.html'
+
+    def get(self, request):
+        objects = all_bucket_objects_task()
+
+        return render(request, self.template_name, {'objects': objects})
+
+
+# class DeleteBucket(view):
+#     def get(self, request, obj_name):
+#         delete_bucket_object_task(obj_name)
+#         return redirect('home:bucket')
