@@ -21,7 +21,7 @@
                 <th scope="row">{{ forloop.counter }}</th>
                 <td>{{ object.Key }}</td>
                 <td>{{ object.Size|filesizeformat }}</td>
-                <td>Download</td>
+                <td><a href="{% url 'home:download_obj_bucket' object.Key  %}">Download</a></td>
                 <td><a href="{% url 'home:delete_obj_bucket' object.Key %}">Delete</a></td>
             </tr>
 
